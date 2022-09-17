@@ -1,0 +1,18 @@
+div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+a{
+    text-decoration:none;
+    background-color: #ebebeb;
+    border-radius: 15px;
+    margin: 4px;
+    padding: 2px 8px;
+    color: blue;
+}
+
+a:hover{
+    color:#FF0000;
+    background-color: #ff00001f;
+}

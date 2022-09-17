@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FoodService } from '../services/food/food.service';
 import { Foods } from '../shared/models/food';
+import { Tag } from '../shared/models/tag';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,7 @@ import { Foods } from '../shared/models/food';
 })
 export class HomeComponent implements OnInit {
   foods:Foods[] = [];
+  tas:Tag[]= [];
 
   constructor(private foodService:FoodService, private route: ActivatedRoute) { }
 
@@ -25,7 +27,10 @@ export class HomeComponent implements OnInit {
   searchFood(){
     this.route.params.subscribe(params => {
       if(params['searchTerm']){
-        this.foods= this.foodService.getAll().filter(food => food.name.toLowerCase().includes(params['searchTerm'].toLowerCase()));
+        this.foods= this.foodService.getAllFoodBySearchTerm(params['searchTerm']);
+      }
+      else if(params['tag']){
+        this.foods= this.foodService.getAllFoodsByTag(params['tag']);
       }
     })
   }
